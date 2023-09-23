@@ -20,7 +20,7 @@ export default {
 			themes: {
 				preset: [
 					{
-						name: 'skeleton',
+						name: 'gold-nouveau',
 						enhancements: true
 					}
 				]
