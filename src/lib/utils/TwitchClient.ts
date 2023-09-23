@@ -11,5 +11,20 @@ async function authenticate() {
     goto(url);
 }
 
-
-export {authenticate};
+// fetch profile data
+const profile_url = import.meta.env.VITE_TWITCH_PROFILE_URL;
+async function fetchProfile(token) {
+    const response = await fetch(profile_url, {
+        method: 'GET',
+        headers: {
+            'Authorization': `Bearer ${token}`,
+            'Client-ID': client_id,
+        }
+    });
+    const data = await response.json();
+    localStorage.setItem("twitch_id", data.data[0].id);
+    localStorage.setItem("twitch_login", data.data[0].login);
+    localStorage.setItem("twitch_display_name", data.data[0].display_name);
+    return data;
+};
+export { authenticate, fetchProfile };
