@@ -2,7 +2,6 @@ import { createWeb3Modal, defaultWagmiConfig } from '@web3modal/wagmi';
 import { polygon, polygonMumbai } from '@wagmi/core/chains';
 import { writable } from 'svelte/store';
 import { disconnect, watchAccount } from '@wagmi/core';
-import { goto } from '$app/navigation';
 
 
 // wallet connect setup and modal
@@ -29,7 +28,6 @@ watchAccount(async (account) => {
         address.set(account.address);
         localStorage.setItem('address', account.address);
         console.log('User is connected');
-        goto('/creator/onboard');
     } else {
         connected.set(false);
         address.set('');
