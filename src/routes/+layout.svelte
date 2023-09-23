@@ -12,7 +12,7 @@
 
 <AppShell class="max-w-screen-xl m-auto">
 	<svelte:fragment slot="header">
-	<NavBar />
+		<NavBar />
 	</svelte:fragment>
 	<slot />
 </AppShell>

@@ -4,7 +4,7 @@
 
 	$: if ($connected == true) {
 		goto('/creator/twitch');
-	};
+	}
 </script>
 
 <div class="h-screen flex flex-col w-full text-center py-8 px-4 lg:py-16 lg:px-12">

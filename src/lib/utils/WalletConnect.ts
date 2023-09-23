@@ -3,7 +3,6 @@ import { polygon, polygonMumbai } from '@wagmi/core/chains';
 import { writable } from 'svelte/store';
 import { disconnect, watchAccount } from '@wagmi/core';
 
-
 // wallet connect setup and modal
 const projectId = import.meta.env.VITE_WALLET_CONNECT_PROJECT_ID;
 const chains = [polygon, polygonMumbai];
@@ -18,27 +17,27 @@ const connected = writable(false);
 
 // open connection modal
 async function login() {
-    await modal.open();
-};
+	await modal.open();
+}
 
 // watch for changes in account
 watchAccount(async (account) => {
-    if(account.isConnected) {
-        connected.set(true);
-        address.set(account.address);
-        localStorage.setItem('address', account.address);
-        console.log('User is connected');
-    } else {
-        connected.set(false);
-        address.set('');
-        localStorage.setItem('address', account.address);
-        console.log('User is not connected');
-    }
+	if (account.isConnected) {
+		connected.set(true);
+		address.set(account.address);
+		localStorage.setItem('address', account.address);
+		console.log('User is connected');
+	} else {
+		connected.set(false);
+		address.set('');
+		localStorage.setItem('address', account.address);
+		console.log('User is not connected');
+	}
 });
 
 // logout the user
 async function logout() {
-    await disconnect();
-};
+	await disconnect();
+}
 
 export { address, connected, logout, login };
