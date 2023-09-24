@@ -1,7 +1,7 @@
 <script lang="ts">
 	import { authenticate, fetchProfile } from '$lib/utils/TwitchClient';
 	import { page } from '$app/stores';
-	import Spinner from '$lib/components/Spinner.svelte';
+	import Spinner from '$lib/components/core/Spinner.svelte';
     import { Avatar } from '@skeletonlabs/skeleton';
 
 

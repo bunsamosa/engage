@@ -7,7 +7,7 @@
 	storePopup.set({ computePosition, autoUpdate, flip, shift, offset, arrow });
 
 	import { AppShell } from '@skeletonlabs/skeleton';
-	import NavBar from '$lib/components/NavBar.svelte';
+	import NavBar from '$lib/components/core/NavBar.svelte';
 </script>
 
 <AppShell class="max-w-screen-xl m-auto">

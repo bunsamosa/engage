@@ -46,10 +46,11 @@ async function createProfile(address, handle, name) {
 
 	if (!isRelayerResult(profileCreateResultValue)) {
 		console.log(`Something went wrong`, profileCreateResultValue);
-		return;
+		return null;
 	}
 
 	console.log(`Transaction was successfuly broadcasted with txId ${profileCreateResultValue.txId}`);
+	return lenshandle;
 }
 
 export { authenticate, fetchProfile, createProfile };
