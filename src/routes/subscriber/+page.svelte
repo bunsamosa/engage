@@ -7,10 +7,10 @@
 	import { address } from '$lib/utils/WalletConnect';
 
 	async function fetchProfile() {
-		if(creator_cid == null) {
-			alert("Failed to load data, Please try again");
+		if (creator_cid == null) {
+			alert('Failed to load data, Please try again');
 			return;
-		};
+		}
 		let creator_profile = await getData(creator_cid);
 		console.log(creator_profile);
 		return creator_profile;

@@ -6,12 +6,13 @@
 	import { Avatar } from '@skeletonlabs/skeleton';
 	let creator_cid = localStorage.getItem('creator_metadata');
 	import { getData } from '$lib/utils/StorageClient';
+	import Leaderboard from '$lib/components/connectors/Leaderboard.svelte';
 
 	async function fetchProfile() {
-		if(creator_cid == null) {
-			alert("Failed to load data, Please try again");
+		if (creator_cid == null) {
+			alert('Failed to load data, Please try again');
 			return;
-		};
+		}
 		let creator_profile = await getData(creator_cid);
 		console.log(creator_profile);
 		return creator_profile;
@@ -50,18 +51,9 @@
 			<Membership />
 			<Challenges />
 		</div>
+		<div class="text-xl font-bold m-auto p-3">Top Fans this week</div>
+		<div class="m-auto">
+			<Leaderboard />
+		</div>
 	{/await}
 </div>
-
-<!-- <div class="flex flex-col h-full">
-	<div class="max-w-3xl m-auto">
-		<div class="text-center">
-			<div class="p-4 text-4xl font-bold md:text-3xl lg:text-4xl">Dashboard</div>
-		</div>
-			<Stats/>
-		<div class="flex flex-row flex-wrap overflow-y-scroll justify-around">
-			<Membership />
-			<Challenges />
-		</div>
-	</div>
-</div> -->
