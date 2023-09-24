@@ -31,6 +31,7 @@ async function fetchProfile(address) {
 	const defaultProfile = allOwnedProfiles.items[0];
 	localStorage.setItem('lens_handle', defaultProfile.handle);
 	localStorage.setItem('lens_profile_id', defaultProfile.id)
+	console.log(defaultProfile);
 	return defaultProfile;
 }
 
@@ -58,12 +59,13 @@ async function createProfile(address, handle, name) {
 
 // update metadata using IPFS cid
 async function updateMetadata(cid) {
-	const url = "https://ipfs.io/ipfs/" + cid;
+	const url = "ipfs://" + cid;
 	let lens_profile_id = localStorage.getItem('lens_profile_id');
 	const typedDataResult = await lensClient.profile.createSetProfileMetadataTypedData({
 		metadata: url,
 		profileId: lens_profile_id,
 	});
+	console.log(lens_profile_id);
 	console.log("Uploaded metadata: ", typedDataResult)
 }
 

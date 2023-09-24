@@ -2,9 +2,10 @@
 import TwitchCard from "$lib/components/connectors/TwitchCard.svelte";
 import LensCard from "$lib/components/connectors/LensCard.svelte";
 import TwitterCard from "$lib/components/connectors/TwitterCard.svelte";
-import {uploadData} from '$lib/utils/StorageClient';
+import {uploadData, getData} from '$lib/utils/StorageClient';
 import {updateMetadata} from '$lib/utils/LensConnect';
 import Spinner from '$lib/components/core/Spinner.svelte';
+import {uuid} from 'uuidv4';
 
 let loading = false;
 async function saveData() {
@@ -31,11 +32,15 @@ async function saveData() {
             "value": localStorage.getItem('lens_profile_id') || "",
         }
 ];
-    console.log(data);
-    let attributes = {
-        "attributes": data
+    let metadata = {
+        "name": localStorage.getItem('twitch_display_name') || "",
+        "bio": "",
+        "cover_picture": "",
+        "attributes": data,
+        "version": "1.0.0",
+        "metadata_id": uuid(),
     };
-    const cid = await uploadData(attributes);
+    const cid = await uploadData(metadata);
     console.log(cid);
     loading = false;
     await updateMetadata(cid);

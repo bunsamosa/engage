@@ -13,6 +13,7 @@ async function uploadData(data) {
     ];
     const cid = await client.put(files);
     console.log('stored files with cid:', cid);
+    localStorage.setItem('ipfs_cid', cid);
     return cid;
 }
 
