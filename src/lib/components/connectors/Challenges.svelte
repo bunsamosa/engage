@@ -11,6 +11,11 @@
 		challenges = [...data.challenges];
 		loading = false;
 	});
+
+	getData(cid).then((data) => {
+		challenges = [...data.challenges];
+		loading = false;
+	});
 </script>
 
 <div

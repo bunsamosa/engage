@@ -9,6 +9,8 @@
 	</svelte:fragment>
 	<svelte:fragment slot="trail">
 		{#if $connected}
+			<a href="/creator/onboard" class="px-2">Onboard</a>
+			<a href="/creator/dashboard" class="px-2">Dashboard</a>
 			<button class="px-1" on:click={logout}> Logout </button>
 		{:else}
 			<button class="px-1" on:click={login}> Login </button>
