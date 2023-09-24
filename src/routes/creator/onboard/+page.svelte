@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import TwitchCard from "$lib/components/connectors/TwitchCard.svelte";
 import LensCard from "$lib/components/connectors/LensCard.svelte";
+	import TwitterCard from "$lib/components/connectors/TwitterCard.svelte";
 </script>
 <div class="flex flex-col h-full">
     <div class="text-center">
@@ -13,5 +14,6 @@ import LensCard from "$lib/components/connectors/LensCard.svelte";
     <div class="flex flex-row flex-wrap overflow-y-scroll justify-center">
         <TwitchCard/>
         <LensCard/>
+        <TwitterCard/>
     </div>
 </div>
