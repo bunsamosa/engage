@@ -13,7 +13,7 @@
 			Supercharge your fan interactions
 		</div>
 		<div class="text-xl mb-8 font-semibold lg:text-2xl sm:px-16 xl:px-48">
-			Reward your loyal fanbase with exclusive NFTs and experiences
+			Reward your loyal fanbase with exclusive rewards and experiences
 		</div>
 		<div
 			class="flex flex-col mb-8 lg:mb-32 space-y-4 sm:flex-row sm:justify-center sm:space-y-0 sm:space-x-4"
