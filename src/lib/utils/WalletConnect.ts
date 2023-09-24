@@ -1,11 +1,11 @@
 import { createWeb3Modal, defaultWagmiConfig } from '@web3modal/wagmi';
-import { polygon, polygonMumbai } from '@wagmi/core/chains';
+import { polygon, polygonMumbai, goerli } from '@wagmi/core/chains';
 import { writable } from 'svelte/store';
 import { disconnect, watchAccount } from '@wagmi/core';
 
 // wallet connect setup and modal
 const projectId = import.meta.env.VITE_WALLET_CONNECT_PROJECT_ID;
-const chains = [polygon, polygonMumbai];
+const chains = [polygon, polygonMumbai, goerli];
 
 const wagmiConfig = defaultWagmiConfig({ chains, projectId, appName: 'Web3Modal' });
 const modal = createWeb3Modal({ wagmiConfig, projectId, chains });
