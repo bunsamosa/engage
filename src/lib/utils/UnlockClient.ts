@@ -50,7 +50,8 @@ function checkMembership(address, lock) {
 // show paywall modal
 async function unlockMembership(lock) {
 	const paywall = new Paywall(networks);
-	const provider = new InjectedConnector().getProvider();
+	const injected = new InjectedConnector();
+	const provider = await injected.getProvider();
 	await paywall.connect(provider);
 	await paywall.loadCheckoutModal({
 		locks: {
