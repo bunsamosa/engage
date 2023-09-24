@@ -39,6 +39,12 @@ async function saveData() {
         "attributes": data,
         "version": "1.0.0",
         "metadata_id": uuid(),
+        "challenges": [
+            "Streams viewed: Monthly streak",
+            "Gift 5 Twitch subscriptions",
+            "Streams viewed: Weekly streak",
+            "Follow me on 5 social platforms"
+        ]
     };
     const cid = await uploadData(metadata);
     console.log(cid);

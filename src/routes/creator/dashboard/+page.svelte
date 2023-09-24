@@ -1,5 +1,6 @@
 <script setup lang="ts">
 	import Membership from "$lib/components/connectors/Membership.svelte";
+    import Challenges from "$lib/components/connectors/Challenges.svelte";
 
 
 </script>
@@ -10,5 +11,6 @@
 
     <div class="flex flex-row flex-wrap overflow-y-scroll justify-center">
         <Membership/>
+        <Challenges/>
     </div>
 </div>
