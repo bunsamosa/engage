@@ -5,7 +5,8 @@ import { address } from '$lib/utils/WalletConnect';
 	import Spinner from '$lib/components/core/Spinner.svelte';
 
 	const displayName = localStorage.getItem('twitch_display_name');
-	const handle = localStorage.getItem('twitch_handle');
+	const handle = localStorage.getItem('twitch_login');
+	let lens_handle = "";
 	let loading = false;
 	let userProfile = null;
 
@@ -16,7 +17,7 @@ import { address } from '$lib/utils/WalletConnect';
 
 		userProfile = await fetchProfile(userAddress);
 		if (userProfile == null) {
-			let handle = await createProfile(userAddress, displayName, handle);
+			lens_handle = await createProfile(userAddress, handle, displayName);
 			userProfile = await fetchProfile(userAddress);
 			loading = false;
 		}
@@ -36,7 +37,7 @@ import { address } from '$lib/utils/WalletConnect';
     {#if !loading && userProfile === null}
         <button class="btn variant-filled-primary m-2" on:click={createLens}>Connect</button>
     {:else if userProfile != null}
-        <h3 class="p-4">Connected to {localStorage.getItem('twitch_display_name')}!</h3>
+        <h3 class="p-4">Connected to {localStorage.getItem('lens_handle')}!</h3>
     {:else}
         <Spinner />
     {/if}

@@ -1,7 +1,45 @@
 <script setup lang="ts">
 import TwitchCard from "$lib/components/connectors/TwitchCard.svelte";
 import LensCard from "$lib/components/connectors/LensCard.svelte";
-	import TwitterCard from "$lib/components/connectors/TwitterCard.svelte";
+import TwitterCard from "$lib/components/connectors/TwitterCard.svelte";
+import {uploadData} from '$lib/utils/StorageClient';
+import {updateMetadata} from '$lib/utils/LensConnect';
+import Spinner from '$lib/components/core/Spinner.svelte';
+
+let loading = false;
+async function saveData() {
+    loading = true;
+    let data = [
+        {
+            "key": "lens_handle",
+            "value": localStorage.getItem('lens_handle') || "",
+        },
+        {
+            "key": "twitch_display_name",
+            "value": localStorage.getItem('twitch_display_name') || "",
+        },
+        {
+            "key": "twitch_id",
+            "value": localStorage.getItem('twitch_id') || "",
+        },
+        {
+            "key": "twitter_handle",
+            "value": localStorage.getItem('twitter_handle') || "",
+        },
+        {
+            "key": "lens_profile_id",
+            "value": localStorage.getItem('lens_profile_id') || "",
+        }
+];
+    console.log(data);
+    let attributes = {
+        "attributes": data
+    };
+    const cid = await uploadData(attributes);
+    console.log(cid);
+    loading = false;
+    await updateMetadata(cid);
+}
 </script>
 <div class="flex flex-col h-full">
     <div class="text-center">
@@ -15,5 +53,12 @@ import LensCard from "$lib/components/connectors/LensCard.svelte";
         <TwitchCard/>
         <LensCard/>
         <TwitterCard/>
+    </div>
+    <div class="m-auto">
+        {#if loading}
+            <Spinner/>
+        {:else}
+            <button class="btn variant-filled m-2 font-bold" on:click={saveData}>Save</button>
+        {/if}
     </div>
 </div>

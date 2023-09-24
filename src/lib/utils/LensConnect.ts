@@ -29,6 +29,8 @@ async function fetchProfile(address) {
 
 	// defaultProfile is a ProfileFragment
 	const defaultProfile = allOwnedProfiles.items[0];
+	localStorage.setItem('lens_handle', defaultProfile.handle);
+	localStorage.setItem('lens_profile_id', defaultProfile.id)
 	return defaultProfile;
 }
 
@@ -37,7 +39,7 @@ async function createProfile(address, handle, name) {
 	console.log('Creating profile for address: ', address);
 	let lenshandle = handle + Math.floor(Math.random() * 100);
 	const profileCreateResult = await lensClient.profile.create({
-		handle: lenshandle.toLowerCase()
+		handle: lenshandle.toLowerCase(),
 		// other request args
 	});
 
@@ -50,7 +52,19 @@ async function createProfile(address, handle, name) {
 	}
 
 	console.log(`Transaction was successfuly broadcasted with txId ${profileCreateResultValue.txId}`);
+	localStorage.setItem('lens_handle', lenshandle);
 	return lenshandle;
 }
 
-export { authenticate, fetchProfile, createProfile };
+// update metadata using IPFS cid
+async function updateMetadata(cid) {
+	const url = "https://ipfs.io/ipfs/" + cid;
+	let lens_profile_id = localStorage.getItem('lens_profile_id');
+	const typedDataResult = await lensClient.profile.createSetProfileMetadataTypedData({
+		metadata: url,
+		profileId: lens_profile_id,
+	});
+	console.log("Uploaded metadata: ", typedDataResult)
+}
+
+export { authenticate, fetchProfile, createProfile, updateMetadata };

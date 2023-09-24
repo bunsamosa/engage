@@ -3,7 +3,7 @@
 	import { login, connected } from '$lib/utils/WalletConnect';
 
 	$: if ($connected == true) {
-		goto('/creator/twitch');
+		goto('/creator/onboard');
 	}
 </script>
 
